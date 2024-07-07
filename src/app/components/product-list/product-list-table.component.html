@@ -1,0 +1,28 @@
+<table class="table table-bordered table-hover custom-table">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col-image">Image</th>
+            <th class="col-name">Name</th>
+            <th class="col-price">Price</th>
+            <th class="col-stock">Units in Stock</th>
+            <th class="col-actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td class="col-image align-middle">
+                <img [src]="product.imageUrl" alt="{{ product.name }} Image" height="50" />
+            </td>
+            <td class="col-name align-middle">{{ product.name }}</td>
+            <td class="col-price align-middle">{{ product.unitPrice | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td class="col-stock align-middle">{{ product.unitsInStock }}</td>
+            <td class="col-actions align-middle">
+                <button class="btn btn-sm btn-primary mr-2" (click)="editProduct(product)">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Delete</button>
+            </td>
+        </tr>
+        <tr *ngIf="products.length === 0">
+            <td colspan="5" class="text-center">No products found.</td>
+        </tr>
+    </tbody>
+</table>
